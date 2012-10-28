@@ -7,7 +7,6 @@
     
     <parameters>
         <parameter key="neutron_contact_block.widget.builder.class">Neutron\Widget\ContactBlockBundle\ContactBlockWidget</parameter>
-        <parameter key="neutron_contact_block.doctrine.event_subscriber.widget_contact_block.class">Neutron\Widget\ContactBlockBundle\Doctrine\EventSubscriber\WidgetContactBlockEventSubscriber</parameter>
         <parameter key="neutron_contact_block.doctrine.widget_contact_block_manager.default.class">Neutron\Widget\ContactBlockBundle\Doctrine\WidgetContactBlockManager</parameter>
         <parameter key="neutron_contact_block.controller.backend.widget_contact_block.default.class">Neutron\Widget\ContactBlockBundle\Controller\Backend\WidgetContactBlockController</parameter>
         <parameter key="neutron_contact_block.controller.frontend.widget_contact_block.default.class">Neutron\Widget\ContactBlockBundle\Controller\Frontend\WidgetContactBlockController</parameter>
@@ -35,14 +34,6 @@
         	factory-method="build"
         >
         	<tag name="neutron.widget" alias="neutron.widget.contact_block" />
-        </service>
-        
-        <service id="neutron_contact_block.doctrine.event_subscriber.widget_contact_block"
-        	class="%neutron_contact_block.doctrine.event_subscriber.widget_contact_block.class%"
-        >
-        	<argument type="service" id="neutron_contact_block.widget" />
-        	
-        	<tag name="doctrine.event_subscriber" connection="default" />
         </service>
         
         <service id="neutron_contact_block.doctrine.widget_contact_block_manager.default" 

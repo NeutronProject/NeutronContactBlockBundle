@@ -38,8 +38,8 @@ class ContactBlockWidget
     {
         $widget = $this->factory->createWidget(self::IDENTIFIER);
         $widget
-            ->setLabel($this->translator->trans('widget.contact_form.label', array(), $this->translationDomain))
-            ->setDescription($this->translator->trans('widget.contact_form.desc', array(), $this->translationDomain))
+            ->setLabel($this->translator->trans('widget.contact_block.label', array(), $this->translationDomain))
+            ->setDescription($this->translator->trans('widget.contact_block.desc', array(), $this->translationDomain))
             ->setForward('neutron_contact_block.controller.frontend.widget_contact_block:renderAction')
             ->addBackendPage(array(
                 'name'      => 'widget.contact_block.management',
