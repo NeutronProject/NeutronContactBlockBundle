@@ -1,7 +1,7 @@
 <?php
 namespace Neutron\Widget\ContactBlockBundle\Controller\Frontend;
 
-use Neutron\Widget\ContactBlockBundle\Model\WidgetContactInfoInterface;
+use Neutron\Widget\ContactBlockBundle\Model\WidgetContactBlockInterface;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 
@@ -10,15 +10,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 class WidgetContactBlockController extends ContainerAware
 {   
-    public function renderAction(WidgetContactBlockInterface $widget)
+    public function renderAction(WidgetContactBlockInterface $widget = null)
     {   
-        $widgetContactBlockManager = $this->container
-                ->get('neutron_contact_block.widget_contact_block_manager');
-        //$entity = $widgetContactInfoManager->findOneBy(array('category' => $category));
+        if ($this->container->getParameter('neutron_contact_block.enable') === false 
+                || $widget === null || $widget->getEnabled() === false){
+            return new Response();
+        }
         
         $template = $this->container->get('templating')
             ->render($widget->getTemplate(), array(
-                'widget' => $widget,    
+                'widget' => $widget, 
+                'translationDomain' => 
+                    $this->container->getParameter('neutron_contact_block.translation_domain')
             )
         );
     

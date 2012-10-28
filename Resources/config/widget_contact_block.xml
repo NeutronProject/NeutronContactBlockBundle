@@ -7,6 +7,7 @@
     
     <parameters>
         <parameter key="neutron_contact_block.widget.builder.class">Neutron\Widget\ContactBlockBundle\ContactBlockWidget</parameter>
+        <parameter key="neutron_contact_block.doctrine.event_subscriber.widget_contact_block.class">Neutron\Widget\ContactBlockBundle\Doctrine\EventSubscriber\WidgetContactBlockEventSubscriber</parameter>
         <parameter key="neutron_contact_block.doctrine.widget_contact_block_manager.default.class">Neutron\Widget\ContactBlockBundle\Doctrine\WidgetContactBlockManager</parameter>
         <parameter key="neutron_contact_block.controller.backend.widget_contact_block.default.class">Neutron\Widget\ContactBlockBundle\Controller\Backend\WidgetContactBlockController</parameter>
         <parameter key="neutron_contact_block.controller.frontend.widget_contact_block.default.class">Neutron\Widget\ContactBlockBundle\Controller\Frontend\WidgetContactBlockController</parameter>
@@ -24,6 +25,7 @@
             <argument type="service" id="event_dispatcher" />
             <argument type="service" id="neutron_mvc.widget.factory" />
             <argument type="service" id="translator" />
+            <argument>%neutron_contact_block.enable%</argument>
             <argument>%neutron_contact_block.translation_domain%</argument>
         </service>
                 
@@ -33,6 +35,14 @@
         	factory-method="build"
         >
         	<tag name="neutron.widget" alias="neutron.widget.contact_block" />
+        </service>
+        
+        <service id="neutron_contact_block.doctrine.event_subscriber.widget_contact_block"
+        	class="%neutron_contact_block.doctrine.event_subscriber.widget_contact_block.class%"
+        >
+        	<argument type="service" id="neutron_contact_block.widget" />
+        	
+        	<tag name="doctrine.event_subscriber" connection="default" />
         </service>
         
         <service id="neutron_contact_block.doctrine.widget_contact_block_manager.default" 
@@ -112,9 +122,10 @@
         
         <service id="neutron_contact_block.form.backend.type.widget_contact_block.general" 
 			class="%neutron_contact_block.form.backend.type.widget_contact_block.general.class%"
+			scope="request"
 		>
             <call method="setDataGrid">
-            	<argument type="service" id="neutron_contact_block.datagrid.builder.contact_block_multi_select_sortable" />
+            	<argument type="service" id="neutron_contact_block.datagrid.contact_block_multi_select_sortable" />
             </call>
             
             <call method="setEventSubscriber">

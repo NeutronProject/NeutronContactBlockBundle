@@ -9,6 +9,8 @@
  */
 namespace Neutron\Widget\ContactBlockBundle\Form\Backend\Type\WidgetContactBlock;
 
+use Neutron\Bundle\DataGridBundle\DataGrid\DataGridInterface;
+
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 use Symfony\Component\Form\FormView;
@@ -44,7 +46,7 @@ class GeneralType extends AbstractType
     
     protected $translationDomain;
     
-    public function setDataGrid($dataGrid)
+    public function setDataGrid(DataGridInterface $dataGrid)
     {
         $this->dataGrid = $dataGrid;
     }
@@ -87,6 +89,10 @@ class GeneralType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('title', 'text', array(
+                'label' => 'form.title',
+                'translation_domain' => $this->translationDomain
+            ))
             ->add('references', 'neutron_multi_select_sortable_collection', array(
                 'grid' => $this->dataGrid,
                 'options' => array(
@@ -124,7 +130,7 @@ class GeneralType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => $this->widgetContactInfoClass,
+            'data_class' => $this->widgetContactBlockClass,
             'validation_groups' => function(FormInterface $form){
                 return 'default';
             },

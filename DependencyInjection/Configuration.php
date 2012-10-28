@@ -53,7 +53,7 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('controller_backend')->defaultValue('neutron_contact_block.controller.backend.widget_contact_block.default')->end()
                             ->scalarNode('controller_frontend')->defaultValue('neutron_contact_block.controller.frontend.widget_contact_block.default')->end()
                             ->scalarNode('datagrid_multi_select_sortable')->defaultValue('neutron_contact_block_multi_select_sortable')->end()
-                            ->scalarNode('datagrid__management')->defaultValue('neutron_widget_contact_block_management')->end()  
+                            ->scalarNode('datagrid_management')->defaultValue('neutron_widget_contact_block_management')->end()  
                             ->arrayNode('form_backend')
                             ->addDefaultsIfNotSet()
                                 ->children()

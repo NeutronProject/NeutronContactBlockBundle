@@ -1,7 +1,7 @@
 <?php
 namespace Neutron\Widget\ContactBlockBundle\DataGrid;
 
-use Neutron\Widget\ContactBlockBundle\ContactBlockManagerInterface;
+use Neutron\Widget\ContactBlockBundle\Model\ContactBlockManagerInterface;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
@@ -26,7 +26,7 @@ class ContactBlockManagementDataGrid
    
 
     public function __construct (FactoryInterface $factory, Translator $translator, Router $router, 
-             ContactBlockManagerInterface $manager, $translationDomain)
+        ContactBlockManagerInterface $manager, $translationDomain)
     {
         $this->factory = $factory;
         $this->translator = $translator;
@@ -49,7 +49,6 @@ class ContactBlockManagementDataGrid
                 $this->translator->trans('grid.contact_block_management.phone',  array(), $this->translationDomain),
                 $this->translator->trans('grid.contact_block_management.email',  array(), $this->translationDomain),
                 $this->translator->trans('grid.contact_block_management.city',  array(), $this->translationDomain),
-                $this->translator->trans('grid.contact_block_management.enabled',  array(), $this->translationDomain),
             ))
             ->setColModel(array(
                 array(
@@ -67,15 +66,6 @@ class ContactBlockManagementDataGrid
                 array(
                     'name' => 'b.city', 'index' => 'b.city', 'width' => 200, 
                     'align' => 'left', 'sortable' => true, 'search' => true,
-                ), 
-                array(
-                    'name' => 'b.enabled', 'index' => 'b.enabled', 'width' => 200, 
-                    'align' => 'left', 'sortable' => true, 'search' => true,
-                    'formatter' => 'checkbox',  'search' => true, 'stype' => 'select',
-                    'searchoptions' => array('value' => array(
-                        1 => $this->translator->trans('grid.enabled', array(), $this->translationDomain), 
-                        0 => $this->translator->trans('grid.disabled', array(), $this->translationDomain), 
-                    ))
                 ), 
 
             ))

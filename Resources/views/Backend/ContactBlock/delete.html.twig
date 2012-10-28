@@ -15,14 +15,9 @@
             <table class="table">
                 <tbody>
                 	<tr>
-                		<td><strong>{{ 'form.name'|trans({}, translationDomain) }}</strong></td>
-                		<td class="actions">{{ entity.name }}</td>
+                		<td><strong>{{ 'form.title'|trans({}, translationDomain) }}</strong></td>
+                		<td class="actions">{{ entity.title }}</td>
                 	</tr>
-
-                	<tr>
-                		<td><strong>{{ 'form.enabled'|trans({}, translationDomain) }}</strong></td>
-                		<td class="actions">{{ entity.enabled|yes_no }}</td>
-                    </tr>
                 </tbody>
             </table>
             
@@ -32,7 +27,7 @@
                 <div class="controls">
                     <form action="{{ app.request.requestUri }}" method="POST">
                         <button type="submit"  style="float:right; margin:5px;" type="submit" class="btn" name="operation" value="delete">{{ 'delete'|trans({}, translationDomain) }}</button>
-                        <a href="{{ path('neutron_contact_block.backend.contact_block_management') }}" style="float:right; margin:5px;" class="btn action" >{{ 'form.back'|trans({}, translationDomain) }}</a>
+                        <a href="{{ path('neutron_contact_block.backend.contact_block') }}" style="float:right; margin:5px;" class="btn action" >{{ 'form.back'|trans({}, translationDomain) }}</a>
                     </form>   
                 </div>
             </div> 	

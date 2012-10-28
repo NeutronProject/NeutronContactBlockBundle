@@ -16,7 +16,7 @@
                 <tbody>
                 	<tr>
                 		<td><strong>{{ 'form.name'|trans({}, translationDomain) }}</strong></td>
-                		<td class="actions">{{ entity.name }}</td>
+                		<td class="actions">{{ entity.title }}</td>
                 	</tr>
 
                 	<tr>
@@ -32,7 +32,7 @@
                 <div class="controls">
                     <form action="{{ app.request.requestUri }}" method="POST">
                         <button type="submit"  style="float:right; margin:5px;" type="submit" class="btn" name="operation" value="delete">{{ 'delete'|trans({}, translationDomain) }}</button>
-                        <a href="{{ path('neutron_contact_block.backend.widget_contact_block_management') }}" style="float:right; margin:5px;" class="btn action" >{{ 'form.back'|trans({}, translationDomain) }}</a>
+                        <a href="{{ path('neutron_contact_block.backend.widget_contact_block') }}" style="float:right; margin:5px;" class="btn action" >{{ 'form.back'|trans({}, translationDomain) }}</a>
                     </form>   
                 </div>
             </div> 	

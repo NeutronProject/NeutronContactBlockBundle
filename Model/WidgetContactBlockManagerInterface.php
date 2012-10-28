@@ -3,6 +3,8 @@ namespace Neutron\Widget\ContactBlockBundle\Model;
 
 interface WidgetContactBlockManagerInterface 
 {
-    public function getQueryBuilderForWidgetContactBlockDataGrid();
+    public function getQueryBuilderForWidgetContactBlockManagementDataGrid();
+    
+    public function getQueryBuilderForFormChoices();
 }
 

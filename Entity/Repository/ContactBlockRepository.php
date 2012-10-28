@@ -16,7 +16,7 @@ class ContactBlockRepository extends TranslationRepository
     public function getQueryBuilderForContactBlockManagementDataGrid()
     {
         $qb = $this->createQueryBuilder('b');
-        $qb->select('b.id, b.title, b.phone, b.email, b.city, b.enabled');
+        $qb->select('b.id, b.title, b.phone, b.email, b.city');
         
         return $qb;
     }
@@ -24,7 +24,7 @@ class ContactBlockRepository extends TranslationRepository
     public function getQueryBuilderForContactBlockMultiSelectSortableDataGrid()
     {
         $qb = $this->createQueryBuilder('b');
-        $qb->select('b.id, b.title, b.enabled');
+        $qb->select('b.id, b.title');
         
         return $qb;
     }

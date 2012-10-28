@@ -37,8 +37,5 @@ interface ContactBlockInterface
     
     public function setCountry ($country);
     
-    public function setEnabled($enabled);
-    
-    public function getEnabled();
 }
 

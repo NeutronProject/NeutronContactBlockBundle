@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 
-class ContactBlockController extends ContainerAware
+class WidgetContactBlockController extends ContainerAware
 {
     public function indexAction()
     {

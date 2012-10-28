@@ -27,7 +27,7 @@
         </service>
         
         <service id="neutron_contact_block.controller.backend.contact_block.default" 
-            class="%neutron_contact_block.controller.backend.widget_block.default.class%"
+            class="%neutron_contact_block.controller.backend.contact_block.default.class%"
         >	
             <call method="setContainer">
             	<argument type="service" id="service_container" />

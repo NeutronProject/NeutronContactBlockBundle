@@ -1,6 +1,8 @@
 <?php
 namespace Neutron\Widget\ContactBlockBundle\DataGrid;
 
+use Neutron\Widget\ContactBlockBundle\Model\ContactBlockManagerInterface;
+
 use Neutron\Widget\ContactBlockBundle\ContactInfoManagerInterface;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
@@ -46,22 +48,11 @@ class ContactBlockMultiSelectSortableDataGrid
             ->setAutoWidth(true)
             ->setColNames(array(
                 $this->translator->trans('grid.contact_block_management.title',  array(), $this->translationDomain),
-                $this->translator->trans('grid.contact_block_management.enabled',  array(), $this->translationDomain),
             ))
             ->setColModel(array(
                 array(
                     'name' => 'b.title', 'index' => 'b.title', 'width' => 400, 
                     'align' => 'left', 'sortable' => true, 'search' => true,
-                ), 
-                
-                array(
-                    'name' => 'b.enabled', 'index' => 'b.enabled', 'width' => 200, 
-                    'align' => 'left', 'sortable' => true, 'search' => true,
-                    'formatter' => 'checkbox',  'search' => true, 'stype' => 'select',
-                    'searchoptions' => array('value' => array(
-                        1 => $this->translator->trans('grid.enabled', array(), $this->translationDomain), 
-                        0 => $this->translator->trans('grid.disabled', array(), $this->translationDomain), 
-                    ))
                 ), 
 
             ))
@@ -72,7 +63,7 @@ class ContactBlockMultiSelectSortableDataGrid
             ->enableViewRecords(true)
             ->enableSearchButton(true)
             ->enableMultiSelectSortable(true)
-            ->setMultiSelectSortableColumn('i.title')
+            ->setMultiSelectSortableColumn('b.title')
         ;
 
         return $dataGrid;

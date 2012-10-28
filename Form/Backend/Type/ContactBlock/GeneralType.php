@@ -81,14 +81,6 @@ class GeneralType extends AbstractType
                 'label' => 'form.country',
                 'translation_domain' => $this->translationDomain
             ))         
-            ->add('enabled', 'checkbox', array(
-                'label' => 'form.enabled', 
-                'value' => true,
-                'required' => false,
-                'attr' => array('class' => 'uniform'),
-                'translation_domain' => $this->translationDomain
-            ))
-
         ;
     }
     

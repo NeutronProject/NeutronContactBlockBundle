@@ -47,6 +47,12 @@ class ContactBlockWidget
                 'route'     => 'neutron_contact_block.backend.widget_contact_block',
                 'displayed' => true
             ))
+            ->addBackendPage(array(
+                'name'      => 'contact_block.management',
+                'label'     => 'contact_block.management.label',
+                'route'     => 'neutron_contact_block.backend.contact_block',
+                'displayed' => true
+            ))
         ;
         
         $this->dispatcher->dispatch(

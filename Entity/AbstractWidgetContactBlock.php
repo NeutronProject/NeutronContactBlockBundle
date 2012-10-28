@@ -7,7 +7,9 @@
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
-namespace Neutron\Plugin\ContactBundle\Entity;
+namespace Neutron\Widget\ContactBlockBundle\Entity;
+
+use Neutron\MvcBundle\Widget\WidgetInterface;
 
 use Neutron\Bundle\FormBundle\Model\MultiSelectSortableReferenceInterface;
 
@@ -68,6 +70,13 @@ class AbstractWidgetContactBlock implements WidgetContactBlockInterface
      * this is not a mapped field of entity metadata, just a simple property
      */
     protected $locale;
+    
+    /**
+     *  
+     * 
+     * @var Neutron\MvcBubdle\Widget\WidgetInterface
+     */
+    protected $widget;
     
     public function __construct()
     {
@@ -136,6 +145,16 @@ class AbstractWidgetContactBlock implements WidgetContactBlockInterface
     public function getEnabled()
     {
         return $this->enabled;
+    }
+    
+    public function setWidget(WidgetInterface $widget)
+    {
+        $this->widget = $widget;
+    }
+    
+    public function getWidget()
+    {
+        return $this->widget;
     }
 
 }

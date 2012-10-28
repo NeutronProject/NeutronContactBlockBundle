@@ -28,9 +28,14 @@ class NeutronContactBlockExtension extends Extension
             $loader->load(sprintf('%s.xml', $basename));
         }
         
-        $this->loadGeneralConfigurations($configs, $container);
-        $this->loadWidgetContactBlockConfigurations($config, $container);
-        $this->loadBlockConfigurations($configs, $container);
+        if (false === $config['enable']){
+            $container->getDefinition('neutron_contact_block.widget')
+                ->clearTag('neutron.widget');
+        }
+        
+        $this->loadGeneralConfigurations($config, $container);
+        $this->loadWidgetContactBlockConfigurations($config['widget'], $container);
+        $this->loadBlockConfigurations($config['block'], $container);
     }
     
     protected function loadGeneralConfigurations(array $config, ContainerBuilder $container)
@@ -45,6 +50,7 @@ class NeutronContactBlockExtension extends Extension
     {
  
         $container->setParameter('neutron_contact_block.widget_contact_block_class', $config['class']);
+        $container->setParameter('neutron_contact_block.contact_block_reference_class', $config['reference_class']);
         $container->setAlias('neutron_contact_block.widget_contact_block_manager', $config['manager']);
         $container->setAlias('neutron_contact_block.controller.backend.widget_contact_block', $config['controller_backend']);
         $container->setAlias('neutron_contact_block.controller.frontend.widget_contact_block', $config['controller_frontend']);
@@ -56,7 +62,7 @@ class NeutronContactBlockExtension extends Extension
         $container->setParameter('neutron_contact_block.datagrid.widget_contact_block_management', $config['datagrid_management']);
         $container->setParameter('neutron_contact_block.datagrid.contact_block_multi_select_sortable', $config['datagrid_multi_select_sortable']);
        
-        $container->setParameter('neutron_contact_block.datagrid.widget_contact_block_templates', $config['templates']);
+        $container->setParameter('neutron_contact_block.widget_contact_block_templates', $config['templates']);
     }
     
     protected function loadBlockConfigurations(array $config, ContainerBuilder $container)

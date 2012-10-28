@@ -9,16 +9,28 @@
  */
 namespace Neutron\Widget\ContactBlockBundle\Entity\Repository;
 
+use Neutron\Widget\ContactBlockBundle\Model\WidgetContactBlockInterface;
+
 use Gedmo\Translatable\Entity\Repository\TranslationRepository;
 
 class WidgetContactBlockRepository extends TranslationRepository
 {
-    public function getQueryBuilderForWidgetContactBlockDataGrid()
+    public function getQueryBuilderForWidgetContactBlockManagementDataGrid()
     {
         $qb = $this->createQueryBuilder('w');
         $qb->select('w.id, w.title, w.enabled');
     
         return $qb;
     }
+    
+    public function getQueryBuilderForFormChoices()
+    {
+        $qb = $this->createQueryBuilder('w');
+        $qb->where('w.enabled = ?1')->orderBy('w.title', 'ASC')->setParameters(array(1 => true));
+    
+        return $qb;
+    }
+    
+
 
 }

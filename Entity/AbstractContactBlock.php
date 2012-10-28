@@ -88,12 +88,6 @@ class AbstractContactBlock implements ContactBlockInterface
      */
     protected $country;
     
-    /**
-     * @var boolean 
-     *
-     * @ORM\Column(type="boolean", name="enabled")
-     */
-    protected $enabled = false;
     
     /**
      * @Gedmo\Locale
@@ -185,16 +179,6 @@ class AbstractContactBlock implements ContactBlockInterface
 	public function setCountry ($country)
     {
         $this->country = $country;
-    }
-    
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-    }
-    
-    public function getEnabled()
-    {
-        return $this->enabled;
     }
 
 	public function setTranslatableLocale($locale)

@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\MappedSuperclass
  * 
  */
-class AbstractContactInfoReference implements ContactBlockReferenceInterface
+class AbstractContactBlockReference implements ContactBlockReferenceInterface
 {
     /**
      * @var integer 
