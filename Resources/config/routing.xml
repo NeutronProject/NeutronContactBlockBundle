@@ -3,6 +3,37 @@
 <routes xmlns="http://symfony.com/schema/routing"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
-
+    
+	<route id="neutron_contact_block.backend.widget_contact_block" pattern="/admin/widget/widget-contact-block">
+        <default key="_controller">neutron_contact_block.controller.backend.widget_contact_block:indexAction</default>
+        <requirement key="_method">GET|POST</requirement>
+    </route>
+    
+	<route id="neutron_contact_block.backend.widget_contact_block.update" pattern="/admin/widget/widget-contact-block/update/{id}">
+        <default key="_controller">neutron_contact_block.controller.backend.widget_contact_block:updateAction</default>
+        <default key="id">0</default>
+        <requirement key="_method">GET|POST</requirement>
+    </route>
+    
+	<route id="neutron_contact_block.backend.widget_contact_block.delete" pattern="/admin/widget/widget-contact-block/delete/{id}">
+        <default key="_controller">neutron_contact_block.controller.backend.widget_contact_block:deleteAction</default>
+        <requirement key="_method">GET|POST</requirement>
+    </route>
+    
+	<route id="neutron_contact_block.backend.contact_block" pattern="/admin/widget/contact-block">
+        <default key="_controller">neutron_contact_block.controller.backend.contact_block:indexAction</default>
+        <requirement key="_method">GET|POST</requirement>
+    </route>
+    
+	<route id="neutron_contact_block.backend.contact_block.update" pattern="/admin/widget/contact-block/update/{id}">
+        <default key="_controller">neutron_contact_block.controller.backend.contact_block:updateAction</default>
+        <default key="id">0</default>
+        <requirement key="_method">GET|POST</requirement>
+    </route>
+    
+	<route id="neutron_contact_block.backend.contact_block.delete" pattern="/admin/widget/contact-block/delete/{id}">
+        <default key="_controller">neutron_contact_block.controller.backend.contact_block:deleteAction</default>
+        <requirement key="_method">GET|POST</requirement>
+    </route>
 
 </routes>

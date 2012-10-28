@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    
+    <parameters>
+        <parameter key="neutron_contact_block.doctrine.contact_block_manager.default.class">Neutron\Widget\ContactBlockBundle\Doctrine\ContactBlockManager</parameter>
+        <parameter key="neutron_contact_block.controller.backend.contact_block.default.class">Neutron\Widget\ContactBlockBundle\Controller\Backend\ContactBlockController</parameter>
+        <parameter key="neutron_contact_block.datagrid.builder.contact_block_management.class">Neutron\Widget\ContactBlockBundle\DataGrid\ContactBlockManagementDataGrid</parameter>
+        <parameter key="neutron_contact_block.form.backend.type.contact_block.class">Neutron\Widget\ContactBlockBundle\Form\Backend\Type\ContactBlockType</parameter>
+        <parameter key="neutron_contact_block.form.backend.type.contact_block.general.class">Neutron\Widget\ContactBlockBundle\Form\Backend\Type\ContactBlock\GeneralType</parameter>
+        <parameter key="neutron_contact_block.form.backend.handler.contact_block.default.class">Neutron\Widget\ContactBlockBundle\Form\Backend\Handler\ContactBlockHandler</parameter>
+    </parameters>
+
+    <services>
+        
+        <service id="neutron_contact_block.doctrine.contact_block_manager.default" 
+        	class="%neutron_contact_block.doctrine.contact_block_manager.default.class%">
+            <call method="setClassName">
+            	<argument>%neutron_contact_block.contact_block_class%</argument>
+            </call>
+            <call method="setObjectManager">
+            	<argument type="service" id="object_manager" />
+            </call>
+        </service>
+        
+        <service id="neutron_contact_block.controller.backend.contact_block.default" 
+            class="%neutron_contact_block.controller.backend.widget_block.default.class%"
+        >	
+            <call method="setContainer">
+            	<argument type="service" id="service_container" />
+            </call>    
+        </service>
+        
+        <service id="neutron_contact_block.datagrid.builder.contact_block_management" 
+        	class="%neutron_contact_block.datagrid.builder.contact_block_management.class%"
+        	scope="request"
+       	>
+        	<argument type="service" id="neutron_data_grid.factory" />
+        	<argument type="service" id="translator" />
+        	<argument type="service" id="router" />
+        	<argument type="service" id="neutron_contact_block.contact_block_manager" />
+        	<argument>%neutron_contact_block.translation_domain%</argument>
+        </service>
+        
+        <service id="neutron_contact_block.datagrid.contact_block_management" 
+            class="Neutron\Bundle\DataGridBundle\DataGrid\DataGrid"
+            factory-service="neutron_contact_block.datagrid.builder.contact_block_management"
+            factory-method="build"
+        >
+            <tag name="neutron_data_grid.datagrid" alias="neutron_contact_block_management" />
+        </service>
+
+        <service id="neutron_contact_block.form.backend.contact_block" factory-method="createNamed" factory-service="form.factory" class="Symfony\Component\Form\Form">
+            <argument>%neutron_contact_block.form.backend.name.contact_block%</argument>
+            <argument>%neutron_contact_block.form.backend.type.contact_block%</argument>
+        </service>
+        
+        <service id="neutron_contact_block.form.backend.type.contact_block"
+        	class="%neutron_contact_block.form.backend.type.contact_block.class%"
+        >                  
+            <tag name="form.type" alias="neutron_backend_contact_block" />
+        </service>
+        
+        <service id="neutron_contact_block.form.backend.type.contact_block.general" 
+			class="%neutron_contact_block.form.backend.type.contact_block.general.class%"
+		>
+            
+            <call method="setContactBlockClass">
+            	<argument>%neutron_contact_block.contact_block_class%</argument>
+            </call>
+   
+            <call method="setTranslationDomain">
+            	<argument>%neutron_contact_block.translation_domain%</argument>
+            </call>
+            
+            <tag name="form.type" alias="neutron_backend_contact_block_general" />
+		</service>
+		
+	    <service id="neutron_contact_block.form.backend.handler.contact_block.default" 
+        	class="%neutron_contact_block.form.backend.handler.contact_block.default.class%"
+        >
+        	<call method="setContainer">
+        		<argument type="service" id="service_container" />
+        	</call>
+        	<call method="setForm">
+        		<argument type="service" id="neutron_contact_block.form.backend.contact_block" />
+        	</call>
+        	<call method="setTranslationDomain">
+        		<argument>%neutron_contact_block.translation_domain%</argument>
+        	</call>
+        </service>
+
+    </services>
+    
+</container>
